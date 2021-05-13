@@ -128,7 +128,7 @@ public class SearchClient
             line = serverMessages.readLine();
         }
         DistanceDiscovery distances = new DistanceDiscovery(walls);
-
+        distances.testPtint(1,1);
         // recreate an optimal state     
         return new State(agentColors, agentPos, agentGoalPos, numAgents, boxColors, boxPos, boxGoalPos, numBoxes, walls, distances);
     }
@@ -148,7 +148,7 @@ public class SearchClient
         BufferedReader serverMessages = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.US_ASCII));
         State initState = SearchClient.parseLevel(serverMessages);
         initState.printOutState();
-        //System.err.println(initState.distance.getDistances(1, 1, 1, 5));
+        System.err.println(initState.distance.getDistances(2, 3, 3, 5));
         
     }
 }

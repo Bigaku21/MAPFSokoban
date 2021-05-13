@@ -42,6 +42,7 @@ public class State
         this.hash         = 0;
     }
     public void printOutState() {
+        distance.testPtint(1, 1);
         for (int i = 0; i < walls.length; i++) {
             for (int j = 0; j < walls[0].length; j++) {
                 if(walls[i][j])
