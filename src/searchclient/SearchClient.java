@@ -112,8 +112,9 @@ public class SearchClient
             {
                 char c = line.charAt(col);
 
-                if (('0' <= c && c <= '9') || ('A' <= c && c <= 'Z'))
+                if (('0' <= c && c <= '9'))
                 {
+                    System.err.println(c - '0');
                     agentGoalPos[c - '0'][0] = row;
                     agentGoalPos[c - '0'][1] = col;
                 }
@@ -123,13 +124,13 @@ public class SearchClient
                     boxGoalPos[c - 'A'][1] = col;
                 }
             }
-            
-
             ++row;
             line = serverMessages.readLine();
         }
+        DistanceDiscovery distances = new DistanceDiscovery(walls);
+
         // recreate an optimal state     
-        return new State(agentColors, agentPos, agentGoalPos, numAgents, boxColors, boxPos, boxGoalPos, numBoxes, walls);
+        return new State(agentColors, agentPos, agentGoalPos, numAgents, boxColors, boxPos, boxGoalPos, numBoxes, walls, distances);
     }
 
     public static void main(String[] args)
@@ -145,11 +146,9 @@ public class SearchClient
         System.out.println("#This is a comment.");
 
         BufferedReader serverMessages = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.US_ASCII));
-        ArrayList<String> list = SearchClient.parseLevel(serverMessages);
+        State initState = SearchClient.parseLevel(serverMessages);
+        initState.printOutState();
+        //System.err.println(initState.distance.getDistances(1, 1, 1, 5));
         
-        System.err.println(list.size());
-        for (String string : list) {
-            System.err.println(string);
-        }
     }
 }

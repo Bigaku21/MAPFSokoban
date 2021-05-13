@@ -15,6 +15,7 @@
             "name": "Launch SearchClient",
             "request": "launch",
             "mainClass": "searchclient.SearchClient",
+            "args": "-jar ../server.jar -l ../levels/MAExample.lvl -c \"java searchclient.SearchClient -dfs\" -g -s 150 -t 180",
             "projectName": "MyRepo_6634e6cc"
         }
     ]
